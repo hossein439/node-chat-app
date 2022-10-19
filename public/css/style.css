@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+:root {
+    --hm: #50A;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#chat-place {
+
+}
+
+input {
+    border: 1px solid rgba(128, 128, 128, 0.589);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--hm) !important;
+}

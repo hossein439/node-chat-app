@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/awesome.css">
+    <link rel="icon" href="./img/favicon.ico" />
+    <script src="./css/tailwind.css"></script>
+    <title>Chat App</title>
+</head>
+
+<body>
+
+    <div class="chat flex h-screen">
+        <div id="chat-sidebar" class="chat-sidebar w-[20em] bg-gray-900 h-full p-3"></div>
+
+        <div class="chat-main w-full flex flex-col justify-between">
+
+            <div id="chat-place" class="overflow-y-scroll scroll-smooth m-4">
+                <div id="message-cnt">
+                </div>
+            </div>
+
+            <div class="flex p-5">
+
+                <form id="form" class="flex grow">
+                    <input type="text" id="input" class="p-2 grow" placeholder="Message" autocomplete="off">
+                    <button id="btn" class="px-3 py-1 mx-4 font-medium bg-[#50A] text-white">
+                        Send
+                    </button>
+                </form>
+
+                <button class="location px-3 py-1 font-medium bg-[#50A] text-white">
+                    Send Location
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script id="message-template" type="text/html">
+        <div class="flex p-3 {{currnet}}">
+            <div class="h-10 w-10 bg-[{{color}}] rounded-full"></div>
+            <div class="flex flex-col mx-3">
+                <p class="text-sm">
+                    <span class="capitalize font-semibold">{{ username }}</span>
+                    <span class="text-gray-400 px-3 text-sm">{{ date }}</span>
+                </p>
+                <p> {{ message }} </p>
+            </div>
+        </div>
+    </script>
+
+    <script id="location-template" type="text/html">
+        <div class="flex p-3 items-center">
+            <div class="h-10 w-10 bg-[{{color}}] rounded-full"></div>
+            <div class="mx-3">
+                <p class="text-sm">
+                    <span class="capitalize font-semibold">{{ username }}</span>
+                    <span class="text-gray-400 px-3 text-sm">{{ date }}</span>
+                </p>
+                <a href="{{ link }}" target="_blank" class="text-[#50A] hover:opacity-50 transition-all">My Current Location</a>
+            </div>
+        </div>
+    </script>
+
+    <script id="sidebar-template" type="text/html">
+        <h2 class="text-3xl text-white text-center bg-white text-black rounded shadow-lg uppercase"> {{room}} </h2>
+        <h3 class="text-xl text-white mt-3"> Users : </h3>
+        <ul>
+            {{#users}}
+            <li class="flex pt-3 items-center">
+                <div class="h-10 w-10 bg-[{{color}}] rounded-full"></div>
+                <div class="mx-3">
+                    <div>
+                        <p class="text-sm">
+                            <span class="capitalize font-semibold text-white">{{ username }}</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            {{/users}}
+        </ul>
+    </script>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/axios.js"></script>
+<script src="./js/chat.js"></script>
+
+</html>
